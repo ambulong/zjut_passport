@@ -29,7 +29,7 @@
 * `zjutauth/auth.php`
  * `zIsLogin()`
  * `zUsername()`
- * `zUID()`
+ * `zSID()` 就是SID，绑定帐号请用这个（防止清除用户功能后再次注册导致冲突）
 * `zjutauth/class.zjutauth.php`
 
 ###设计
@@ -46,9 +46,11 @@
  * reginfo 注册时的主机信息
  * mgmt_info 最后一次登录时的主机信息
 * users_detail 用户详细信息
+ * id
+ * uid
  * real 是否实名 0|1
- * real_token
- * real_time
+ * verify_token 确认实名认证&删除用户 {"0(实名认证)|1(删除用户)","xxx"}
+ * verify_time
  * phone 手机
  * avatar 头像
  * schoolid 学号/工号
@@ -74,7 +76,6 @@
  * email
  * verify_token 激活TOKEN
  * time
-
 * apps
  * id
  * name 应用名
@@ -91,7 +92,6 @@
  * name 必须
  * idcard 必须(唯一)
  * email 必须(唯一)
- 
 * users_logs 用户日志
  * id
  * uid 用户ID
@@ -105,12 +105,43 @@
  * id
  * data
  * time
- 
+* bin 存放删除用户信息
+ * id
+ * data
+ * time
+
+###迁移
+
+####用户中心
+将旧邮箱学号导入新用户中心，教师的email和schoolemail相同，学生的schoolemail为学号+@zjut.edu.cn
+
+password为md5:salt
+
+导入用户默认全未实名认证
+
+####论坛
+论坛独立出去，注册登录改密码于用户中心分离。把用户导向轻论坛
+
+###新用户中心
+
+####登录流程
+* 判断邮箱/号/校邮箱
+* 密码是否正确，错误终止
+* 是否为旧密码，是则更新为phpass加密的密码
+
 ####注册流程
- * 输入学校邮箱，系统发送激活邮件（学校邮箱为用来确认身份信息的关键）
- * 是否已经存在于users_detail，是则终止
- * 输入用户名和密码，个人信息，完成注册（如果邮箱存在realinfo里直接完成实名认证）
+* 输入学校邮箱，是否已经存在于users_detail，是则终止
+* 系统发送激活邮件（学校邮箱为用来确认身份信息的关键）
+* 输入用户名和密码，个人信息，完成注册（如果邮箱存在realinfo里直接完成实名认证）
 
 ####实名认证流程（可多次实名认证，比如：现在这个不是我，重新用别的学号重新认证）
- * 系统判断学号/工号是否存在于realinfo，有则发送到realinfo里的邮箱激活，否则提示联系管理员添加
- * 系统从realinfo自动导入
+* 系统判断学号/工号是否存在于realinfo，有则发送到realinfo里的邮箱激活，否则提示联系管理员添加
+* 系统从realinfo自动导入
+
+####删除用户功能
+* *用学校邮箱可以清空与学校邮箱关联的账户（放入回收站），这样就可以重新注册新用户中心帐号*
+* 输入学校邮箱，是否已经存在于users_detail，否则终止
+* 发送重置邮件
+* 输入姓名+身份证
+* 校验姓名和身份证
+* 把关联账户放入回收站
