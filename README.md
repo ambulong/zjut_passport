@@ -29,6 +29,7 @@
 * `/api.php?action=uploadrealinfo` 上传实名认证信息
 
 ####lib
+可以从用户中心获取到的信息尽量不要储存在本地
 * `zjutauth/auth.php`
  * `appid(number), key(string), seckey(string), debug(boolean)` 配置信息
  * `zIsLogin()`
