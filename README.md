@@ -1,45 +1,9 @@
 ##精弘网络用户中心（zjut_passport）
+* `/admin` 后台
+* `/api` API
+* `/user` 用户前台
+* `/phplib` PHP连接用户中心的说明
 
-###url
-
-####前台（独立）
-* `/login?url=http://xxx.zjut.com/xxx` 登录页面
-* `/profile` 修改/查看资料页面
-* `/forget?step=x` 找回密码
-* `/delete?step=x` 删除帐号
-* `/register?step=x` 注册帐号
-
-####应用接口（独立）
-* `/api/profile?token=xxx&appid=xxx&key=xxx` APP获取个人信息页面 status:0(token失效)|1(成功)|-1(appid或key无效) data:(此部分信息用seckey加密)
-
-####管理后台（独立，内网可见）
-* `/index.php` 管理界面（纯静态, ajax）
-* `/api.php?action=login` 登录
-* `/api.php?action=chgpwd` 更改密码
-* `/api.php?action=logout` 退出登录
-* `/api.php?action=apps` 应用列表
-* `/api.php?action=addapp` 添加应用
-* `/api.php?action=delapp` 添加应用
-* `/api.php?action=updateapp` 更新应用信息
-
-* `/api.php?action=users` 用户管理
-* `/api.php?action=user` 用户详细信息
-* `/api.php?action=realinfo` 实名认证信息列表
-* `/api.php?action=addrealinfo` 删除实名认证信息
-* `/api.php?action=delrealinfo` 删除实名认证信息
-* `/api.php?action=updaterealinfo` 更新实名认证信息
-* `/api.php?action=uploadrealinfo` 上传实名认证信息
-
-####lib
-可以从用户中心获取到的信息尽量不要储存在本地
-* `zjutauth/auth.php`
- * `appid(number), key(string), seckey(string), debug(boolean)` 配置信息
- * `zIsLogin()`
- * `zUsername()`
- * `zSID()` 就是SID，绑定帐号请用这个（防止清除用户功能后再次注册导致冲突）
- * `zEmail()`
- * `zDetail()`
-* `zjutauth/class.zjutauth.php`
 
 ###设计
 
