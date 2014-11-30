@@ -5,6 +5,9 @@
 ####前台（独立）
 * `/login?url=http://xxx.zjut.com/xxx` 登录页面
 * `/profile` 修改/查看资料页面
+* `/forget?step=x` 找回密码
+* `/delete?step=x` 删除帐号
+* `/register?step=x` 注册帐号
 * `/api/profile?token=xxx&appid=xxx&key=xxx` APP获取个人信息页面 status:0(token失效)|1(成功)|-1(appid或key无效) data:(此部分信息用seckey加密)
 
 ####管理后台（独立，内网可见）
@@ -27,9 +30,12 @@
 
 ####lib
 * `zjutauth/auth.php`
+ * `appid(number), key(string), seckey(string), debug(boolean)` 配置信息
  * `zIsLogin()`
  * `zUsername()`
  * `zSID()` 就是SID，绑定帐号请用这个（防止清除用户功能后再次注册导致冲突）
+ * `zEmail()`
+ * `zDetail()`
 * `zjutauth/class.zjutauth.php`
 
 ###设计
