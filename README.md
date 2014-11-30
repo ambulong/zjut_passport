@@ -8,6 +8,8 @@
 * `/forget?step=x` 找回密码
 * `/delete?step=x` 删除帐号
 * `/register?step=x` 注册帐号
+
+####应用接口（独立）
 * `/api/profile?token=xxx&appid=xxx&key=xxx` APP获取个人信息页面 status:0(token失效)|1(成功)|-1(appid或key无效) data:(此部分信息用seckey加密)
 
 ####管理后台（独立，内网可见）
