@@ -36,6 +36,7 @@
 * zUser
  * -isExistID
  * -getDetail
+ * -getMoreDetail
 * zUserList
  * -getList
 * zRealInfo
