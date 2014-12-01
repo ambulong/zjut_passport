@@ -21,7 +21,6 @@
 
 ####需要的类
 * zAdmin:
- * -getUsername
  * -getPassword
  * -auth
  * -update

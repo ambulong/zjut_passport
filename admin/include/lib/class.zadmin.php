@@ -18,18 +18,6 @@ class zUser {
 			unset ( $this->hasher );
 	}
 	
-	public function getUsername() {
-		global $table_prefix;
-		try {
-			$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}admins LIMIT 1" );
-			$sth->execute ();
-			$result = $sth->fetch ( PDO::FETCH_ASSOC );
-			return $result["username"];
-		} catch ( PDOExecption $e ) {
-			echo "<br>Error: " . $e->getMessage ();
-		}
-	}
-	
 	public function getPassword($username) {
 		global $table_prefix;
 		try {
