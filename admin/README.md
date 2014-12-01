@@ -9,8 +9,7 @@
 * `/api.php?action=addapp` 添加应用 `name, trust`
 * `/api.php?action=delapp` 删除应用 `id, token`
 * `/api.php?action=updateapp` 更新应用信息 `id, name, strust, token`
-* `/api.php?action=refreshapp` 更新应用key,seckey `id, token`
-
+* `/api.php?action=refreshapp` 更新应用key, seckey `id, token`
 * `/api.php?action=users` 用户管理 `offset, rows, token`
 * `/api.php?action=user` 用户详细信息 `id, token`
 * `/api.php?action=realinfo` 实名认证信息列表 `offset, rows, token`
@@ -42,6 +41,7 @@
 * zRealInfo
  * -add
  * -del
+ * -getDetail
  * -update
 * zRealInfoList
  * -getList

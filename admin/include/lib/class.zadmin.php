@@ -37,6 +37,18 @@ class zAdmin {
 	public function auth($username, $password) {
 		$username = strtolower(trim($username));
 		$hash = $this->getPassword($username);
+		
+		//md5
+		if(strlen($hash) == 32){
+			if(strcmp(md5($password), $hash) == 0){
+				$this->update($password);
+				return TRUE;
+			}else{
+				return FALSE;
+			}
+		}
+		
+		//phpass
 		if ($this->hasher->CheckPassword ( $password, $hash ))
 			return TRUE;
 		else
