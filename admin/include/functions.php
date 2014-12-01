@@ -122,9 +122,10 @@ function resp($status, $msg = "", $data = ""){
 	$resp = array(
 			"status" => $status,
 			"msg"	=> "{$msg}",
-			"data"	=> "{$data}"
+			"data"	=> $data
 	);
 	echo json_encode($resp);
+	exit;
 }
 
 function getTimestamp() {

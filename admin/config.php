@@ -30,4 +30,4 @@ define ( 'Z_DEBUG', true );
 /**
  * Database Table prefix.
  */
-$table_prefix = 'z_';
+$table_prefix = '';

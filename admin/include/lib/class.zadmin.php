@@ -22,7 +22,7 @@ class zAdmin {
 		global $table_prefix;
 		$username = strtolower(trim($username));
 		try {
-			$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}admins WHERE `username` = :username" );
+			$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}admin WHERE `username` = :username" );
 			$sth->bindParam ( ':username', $username );
 			$sth->execute ();
 			$result = $sth->fetch ( PDO::FETCH_ASSOC );
@@ -37,6 +37,9 @@ class zAdmin {
 	public function auth($username, $password) {
 		$username = strtolower(trim($username));
 		$hash = $this->getPassword($username);
+		
+		if(!$this->isExistName($username))
+			return FALSE;
 		
 		//md5
 		if(strlen($hash) == 32){
@@ -59,7 +62,7 @@ class zAdmin {
 		global $table_prefix;
 		$hash = $this->hasher->HashPassword ( $password );
 		try {
-			$sth = $this->dbh->prepare ( "UPDATE {$table_prefix}admins SET `password`= :password WHERE 1" );
+			$sth = $this->dbh->prepare ( "UPDATE {$table_prefix}admin SET `password`= :password WHERE 1" );
 			$sth->bindParam ( ':password', $hash );
 			$sth->execute ();
 			if (! ($sth->rowCount () > 0))
@@ -82,7 +85,7 @@ class zAdmin {
 		global $table_prefix;
 		$name = strtolower(trim($name));
 		try {
-			$sth = $this->dbh->prepare ( "SELECT count(*) FROM {$table_prefix}admins WHERE `username` = :name " );
+			$sth = $this->dbh->prepare ( "SELECT count(*) FROM {$table_prefix}admin WHERE `username` = :name " );
 			$sth->bindParam ( ':name', $name );
 			$sth->execute ();
 			$row = $sth->fetch ();
