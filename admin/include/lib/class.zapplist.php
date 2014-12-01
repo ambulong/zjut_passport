@@ -16,7 +16,10 @@ class zAppList {
 		$offset = intval($offset);
 		$rows = intval($rows);
 		try {
-			$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}apps LIMIT {$offset},{$row}" );
+			if($offset == 0 && $rows == 0)
+				$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}apps" );
+			else
+				$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}apps LIMIT {$offset},{$row}" );
 			$sth->execute ();
 			$result = $sth->fetchAll ( PDO::FETCH_ASSOC );
 			if (count ( $result ) <= 0) {

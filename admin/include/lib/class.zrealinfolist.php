@@ -16,7 +16,10 @@ class zRealInfoList {
 		$offset = intval($offset);
 		$rows = intval($rows);
 		try {
-			$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}realinfo LIMIT {$offset},{$row}" );
+			if($offset == 0 && $rows == 0)
+				$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}realinfo" );
+			else
+				$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}realinfo LIMIT {$offset},{$row}" );
 			$sth->execute ();
 			$result = $sth->fetchAll ( PDO::FETCH_ASSOC );
 			if (count ( $result ) <= 0) {

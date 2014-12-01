@@ -18,7 +18,7 @@ class zApp {
 		$key = get_salt(100);
 		$seckey = get_salt(100);
 		try {
-			$sth = $this->dbh->prepare ( "INSERT INTO {$table_prefix}hosts(`name`,`key`,`seckey`,`trust`) VALUES( :name, :key, :seckey, :trust)" );
+			$sth = $this->dbh->prepare ( "INSERT INTO {$table_prefix}apps(`name`,`key`,`seckey`,`trust`) VALUES( :name, :key, :seckey, :trust)" );
 			$sth->bindParam ( ':name', $name);
 			$sth->bindParam ( ':key',  $key);
 			$sth->bindParam ( ':seckey', $seckey);
@@ -89,7 +89,7 @@ class zApp {
 	/*
 	 * 更新应用key,seckey 
 	 */
-	public function update($id) {
+	public function refresh($id) {
 		global $table_prefix;
 		$id = intval ( $id );
 		$key = get_salt(100);
@@ -101,6 +101,29 @@ class zApp {
 			$sth = $this->dbh->prepare ( "UPDATE {$table_prefix}apps SET `key`= :key, `seckey`= :seckey WHERE `id` = :id" );
 			$sth->bindParam ( ':key', $key );
 			$sth->bindParam ( ':seckey', $seckey );
+			$sth->bindParam ( ':id', $id );
+			$sth->execute ();
+			if (! ($sth->rowCount () > 0))
+				return FALSE;
+			else
+				return TRUE;
+		} catch ( PDOExecption $e ) {
+			echo "<br>Error: " . $e->getMessage ();
+		}
+	}
+	
+	public function update($name, $trust, $id) {
+		global $table_prefix;
+		$id = intval ( $id );
+		$name = trim($name);
+		$trust = intval($trust);
+		if (! $this->isExistID ( $id )) {
+			return FALSE;
+		}
+		try {
+			$sth = $this->dbh->prepare ( "UPDATE {$table_prefix}apps SET `name`= :name, `trust`= :trust WHERE `id` = :id" );
+			$sth->bindParam ( ':name', $name );
+			$sth->bindParam ( ':trust', $trust );
 			$sth->bindParam ( ':id', $id );
 			$sth->execute ();
 			if (! ($sth->rowCount () > 0))
@@ -141,7 +164,7 @@ class zApp {
 		}
 		try {
 			$sth = $this->dbh->prepare ( "DELETE FROM {$table_prefix}apps WHERE `id` = :id " );
-			$sth->bindParam ( ':id', $value );
+			$sth->bindParam ( ':id', $id );
 			$sth->execute ();
 			$row = $sth->rowCount ();
 			if ($row > 0) {

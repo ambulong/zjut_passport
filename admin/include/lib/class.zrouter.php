@@ -14,6 +14,7 @@ class zRouter {
 			"addapp",
 			"delapp",
 			"updateapp",
+			"refreshapp",
 			"users",
 			"user",
 			"realinfo",
