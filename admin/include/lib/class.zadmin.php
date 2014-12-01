@@ -20,6 +20,7 @@ class zUser {
 	
 	public function getPassword($username) {
 		global $table_prefix;
+		$username = strtolower(trim($username));
 		try {
 			$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}admins WHERE `username` = :username" );
 			$sth->bindParam ( ':username', $username );
@@ -34,7 +35,7 @@ class zUser {
 	}
 	
 	public function auth($username, $password) {
-		$username = strtolower($username);
+		$username = strtolower(trim($username));
 		$hash = $this->getPassword($username);
 		if ($this->hasher->CheckPassword ( $password, $hash ))
 			return TRUE;
