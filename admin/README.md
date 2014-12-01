@@ -14,9 +14,9 @@
 * `/api.php?action=users` 用户管理 `offset, rows, token`
 * `/api.php?action=user` 用户详细信息 `id, token`
 * `/api.php?action=realinfo` 实名认证信息列表 `offset, rows, token`
-* `/api.php?action=addrealinfo` 添加实名认证信息 `schoolid, name, idcard, idcard, email, token`
+* `/api.php?action=addrealinfo` 添加实名认证信息 `schoolid, name, idcard, email, token`
 * `/api.php?action=delrealinfo` 删除实名认证信息 `id, token`
-* `/api.php?action=updaterealinfo` 更新实名认证信息 `id, schoolid, name, idcard, idcard, email, token`
+* `/api.php?action=updaterealinfo` 更新实名认证信息 `id, schoolid, name, idcard, email, token`
 * `/api.php?action=uploadrealinfo` 上传实名认证信息
 
 ####需要的类
