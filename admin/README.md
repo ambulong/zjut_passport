@@ -34,7 +34,6 @@
 * zAppList
  * -getList
 * zUser
- * -add
  * -isExistID
  * -getDetail
 * zUserList
