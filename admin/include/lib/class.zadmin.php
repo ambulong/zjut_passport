@@ -4,7 +4,7 @@
  * @author Ambulong
  *
  */
-class zUser {
+class zAdmin {
 	private $dbh = NULL;
 	private $hasher = NULL;
 	

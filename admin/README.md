@@ -6,7 +6,7 @@
 * `/api.php?action=chgpwd` 更改密码 `password, confirmpassword, newpassword, token`
 * `/api.php?action=logout` 退出登录 `token`
 * `/api.php?action=apps` 应用列表 `offset, rows, token`
-* `/api.php?action=addapp` 添加应用 `name, strust`
+* `/api.php?action=addapp` 添加应用 `name, trust`
 * `/api.php?action=delapp` 删除应用 `id, token`
 * `/api.php?action=updateapp` 更新应用信息 `id, name, strust, token`
 * `/api.php?action=refreshapp` 更新应用key,seckey `id, token`
