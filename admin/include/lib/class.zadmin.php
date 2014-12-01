@@ -58,12 +58,16 @@ class zAdmin {
 			return FALSE;
 	}
 	
-	public function update($password) {
+	public function update($username, $password) {
 		global $table_prefix;
+		$username = strtolower(trim($username));
 		$hash = $this->hasher->HashPassword ( $password );
+		if(!$this->isExistName($username))
+			return FALSE;
 		try {
-			$sth = $this->dbh->prepare ( "UPDATE {$table_prefix}admin SET `password`= :password WHERE 1" );
+			$sth = $this->dbh->prepare ( "UPDATE {$table_prefix}admin SET `password`= :password WHERE `username` = :username" );
 			$sth->bindParam ( ':password', $hash );
+			$sth->bindParam ( ':username', $username );
 			$sth->execute ();
 			if (! ($sth->rowCount () > 0))
 				return FALSE;
