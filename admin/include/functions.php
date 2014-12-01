@@ -117,12 +117,11 @@ function get_salt($length = 8) {
 	return $salt;
 }
 
-function resp($status, $id = "", $command = "", $data = ""){
+function resp($status, $msg = "", $data = ""){
 	header ( 'Content-Type: text/json; charset=utf-8' );
 	$resp = array(
 			"status" => $status,
-			"id"	=> $id,
-			"command"	=> "{$command}",
+			"msg"	=> "{$msg}",
 			"data"	=> "{$data}"
 	);
 	echo json_encode($resp);
