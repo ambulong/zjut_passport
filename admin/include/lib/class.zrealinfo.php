@@ -112,6 +112,8 @@ class zRealInfo {
 		$name = trim($name);
 		$idcard = trim($idcard);
 		$email = trim($email);
+		if($this->isExistEmail($email) || $this->isExistSchoolid($schoolid))
+			return FALSE;
 		if (! $this->isExistID ( $id )) {
 			return FALSE;
 		}
