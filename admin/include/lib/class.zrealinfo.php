@@ -54,7 +54,7 @@ class zRealInfo {
 	}
 	
 	public function isExistSchoolid($schoolid) {
-		$schoolid = trim(schoolid);
+		$schoolid = trim($schoolid);
 		global $table_prefix;
 		try {
 			$sth = $this->dbh->prepare ( "SELECT count(*) FROM {$table_prefix}realinfo WHERE `schoolid` = :schoolid " );
@@ -72,7 +72,7 @@ class zRealInfo {
 	}
 	
 	public function isExistEmail($email) {
-		$email = trim(email);
+		$email = trim($email);
 		global $table_prefix;
 		try {
 			$sth = $this->dbh->prepare ( "SELECT count(*) FROM {$table_prefix}realinfo WHERE `email` = :email " );
