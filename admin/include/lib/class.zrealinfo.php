@@ -140,7 +140,7 @@ class zRealInfo {
 		}
 		try {
 			$sth = $this->dbh->prepare ( "DELETE FROM {$table_prefix}realinfo WHERE `id` = :id " );
-			$sth->bindParam ( ':id', $value );
+			$sth->bindParam ( ':id', $id );
 			$sth->execute ();
 			$row = $sth->rowCount ();
 			if ($row > 0) {
