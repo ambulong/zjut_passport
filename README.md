@@ -22,8 +22,6 @@
  * id
  * uid
  * real 是否实名 0|1
- * verify_token 确认实名认证&删除用户 {"0(实名认证)|1(删除用户)","xxx"}
- * verify_time
  * phone 手机
  * avatar 头像
  * schoolid 学号/工号
@@ -40,7 +38,7 @@
 * access_token
  * id
  * uid
- * token 当前token
+ * token 当前token {"0(verify)|1(实名认证)|2(删除用户)","xxx"}
  * time 生成时间
  * mgmt_time token最后请求时间（如果记住登录就是accesstoken永远不过期,除非用户点击退出）
  * info 主机信息
