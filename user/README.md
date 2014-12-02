@@ -21,3 +21,49 @@
 * `/api.php?action=updatepicture` 更改照片 `picture`, `token`
 * `/api.php?action=updateprofile` 更改资料 `phone`, `bankcard`, `label`, `introduction`, `site`, `qq`, `weixin`, `token`
 
+***
+
+###需要的类
+* zUser
+ * -add
+ * -del
+ * -isExistID
+ * -isExistSID
+ * -isExistSchoolID
+ * -isExistName
+ * -isExistEmail
+ * -isExistSchoolEmail
+ * -getID
+ * -getIDBySchoolEmail
+ * -getDetail
+ * -getMoreDetail
+ * -getMail
+ * -getPassword
+ * -getAvatar
+ * -getVerifyToken
+ * -getVerifyTime
+ * -updatePassword
+ * -updateAvatar
+ * -updatePicture
+ * -updateProfile
+ * -validateVerifyToken
+ * -genVerifyToken
+ * -delVerifyToken
+ * -auth
+ 
+* zUserTemp
+ * -add
+ * -isExistID
+ * -isExistEmail
+ * -getVerifyToken
+ * -getVerifyTime
+ * -genVerifyToken
+ * -delVerifyToken
+ * -validateVerifyToken
+ 
+* zRealInfo
+ * -isExistID
+ * -isExistSchoolID
+ * -isExistName
+ * -isExistEmail
+ * -validate
