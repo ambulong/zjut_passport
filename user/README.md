@@ -20,6 +20,8 @@
 * `/api.php?action=updateemail` 更改邮箱 `email`, `token`
 * `/api.php?action=updatepicture` 更改照片 `picture`, `token`
 * `/api.php?action=updateprofile` 更改资料 `phone`, `bankcard`, `label`, `introduction`, `site`, `qq`, `weixin`, `token`
+* `/api.php?action=identity[&step=1]` 发送实名认证邮件 `schoolemail`, `token`
+* `/api.php?action=identity&step=2` 实名认证 `schoolemail`, `verify_token`, `token`
 
 ***
 
@@ -46,6 +48,7 @@
  * -updateAvatar
  * -updatePicture
  * -updateProfile
+ * -updateIdentity
  * -validateVerifyToken
  * -genVerifyToken
  * -delVerifyToken
