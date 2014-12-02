@@ -17,8 +17,10 @@ class zRealInfo {
 		$name = trim($name);
 		$idcard = trim($idcard);
 		$email = trim($email);
+		if($this->isExistEmail($email) || $this->isExistSchoolid($schoolid))
+			return FALSE;
 		try {
-			$sth = $this->dbh->prepare ( "INSERT INTO {$table_prefix}realinfo(`schoolid`,`name,`idcard`,`email`) VALUES( :schoolid, :name, :idcard, :email)" );
+			$sth = $this->dbh->prepare ( "INSERT INTO {$table_prefix}realinfo(`schoolid`,`name`,`idcard`,`email`) VALUES( :schoolid, :name, :idcard, :email)" );
 			$sth->bindParam ( ':schoolid', $schoolid);
 			$sth->bindParam ( ':name',  $name);
 			$sth->bindParam ( ':idcard', $idcard);
@@ -39,6 +41,42 @@ class zRealInfo {
 		try {
 			$sth = $this->dbh->prepare ( "SELECT count(*) FROM {$table_prefix}realinfo WHERE `id` = :id " );
 			$sth->bindParam ( ':id', $id );
+			$sth->execute ();
+			$row = $sth->fetch ();
+			if ($row [0] > 0) {
+				return TRUE;
+			} else {
+				return FALSE;
+			}
+		} catch ( PDOExecption $e ) {
+			echo "<br>Error: " . $e->getMessage ();
+		}
+	}
+	
+	public function isExistSchoolid($schoolid) {
+		$schoolid = trim(schoolid);
+		global $table_prefix;
+		try {
+			$sth = $this->dbh->prepare ( "SELECT count(*) FROM {$table_prefix}realinfo WHERE `schoolid` = :schoolid " );
+			$sth->bindParam ( ':schoolid', $schoolid );
+			$sth->execute ();
+			$row = $sth->fetch ();
+			if ($row [0] > 0) {
+				return TRUE;
+			} else {
+				return FALSE;
+			}
+		} catch ( PDOExecption $e ) {
+			echo "<br>Error: " . $e->getMessage ();
+		}
+	}
+	
+	public function isExistEmail($email) {
+		$email = trim(email);
+		global $table_prefix;
+		try {
+			$sth = $this->dbh->prepare ( "SELECT count(*) FROM {$table_prefix}realinfo WHERE `email` = :email " );
+			$sth->bindParam ( ':email', $email );
 			$sth->execute ();
 			$row = $sth->fetch ();
 			if ($row [0] > 0) {
