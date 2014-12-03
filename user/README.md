@@ -60,7 +60,8 @@
  * -isExistEmail
  * -getVerifyToken
  * -getVerifyTime
- * -genVerifyToken
+ * -genVerifyToken 生成token
+ * -updateVerifyToken 更新token，需要校验token {"0", "xxx"}
  * -delVerifyToken
  * -validateVerifyToken
  
