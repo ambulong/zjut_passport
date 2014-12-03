@@ -37,7 +37,7 @@ class zUser {
 		}
 		try {
 			$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}users WHERE `id` = :id " );
-			$sth->bindParam ( ':id', $value );
+			$sth->bindParam ( ':id', $id );
 			$sth->execute ();
 			$result = $sth->fetch ( PDO::FETCH_ASSOC );
 			return $result;
@@ -54,7 +54,7 @@ class zUser {
 		}
 		try {
 			$sth = $this->dbh->prepare ( "SELECT * FROM {$table_prefix}users_detail WHERE `uid` = :id " );
-			$sth->bindParam ( ':id', $value );
+			$sth->bindParam ( ':id', $id );
 			$sth->execute ();
 			$result = $sth->fetch ( PDO::FETCH_ASSOC );
 			return $result;
