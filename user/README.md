@@ -64,6 +64,7 @@
  * -updateVerifyToken 更新token，需要校验token {"0", "xxx"}
  * -del
  * -validateVerifyToken
+ * -validateVerifyTime 检查token是否超时
  
 * zRealInfo
  * -isExistID
